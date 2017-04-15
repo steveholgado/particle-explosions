@@ -5,10 +5,10 @@
   "main": "index.js",
   "author": "Steve Holgado",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/steveholgado/explode.js",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/steveholgado/explode.js"
   },
   "scripts": {
     "clean": "rimraf dist",
