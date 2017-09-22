@@ -1,4 +1,4 @@
-export default class Particle {
+class Particle {
 
     constructor(ctx, options) {
         // Store reference to canvas context
@@ -76,3 +76,5 @@ export default class Particle {
     }
 
 }
+
+module.exports = Particle;

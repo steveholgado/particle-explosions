@@ -2,7 +2,7 @@
   "name": "explode.js",
   "version": "1.0.0",
   "description": "Creates particle explosions on a HTML5 canvas element.",
-  "main": "index.js",
+  "main": "explode.min.js",
   "author": "Steve Holgado",
   "license": "MIT",
   "homepage": "https://github.com/steveholgado/explode.js",
@@ -13,7 +13,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "create": "mkdir dist",
-    "js": "browserify src/index.js --transform [ babelify --presets [ es2015 ] ] | uglifyjs --compress --mangle > dist/explode.min.js",
+    "js": "browserify src/index.js --standalone explodeJS --transform [ babelify --presets [ es2015 ] ] | uglifyjs --compress --mangle > dist/explode.min.js",
     "dist": "npm run clean && npm run create && npm run js"
   },
   "devDependencies": {

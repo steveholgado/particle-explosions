@@ -1,6 +1,6 @@
-import Particle from './Particle.js';
+const Particle = require('./Particle.js');
 
-export default class Emitter {
+class Emitter {
 
     constructor(ctx) {
         this.ctx = ctx;
@@ -52,3 +52,5 @@ export default class Emitter {
     }
     
 }
+
+module.exports = Emitter;

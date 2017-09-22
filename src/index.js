@@ -1,8 +1,3 @@
-import Emitter from './Emitter.js';
+const Emitter = require('./Emitter.js');
 
-const explodeJS = { Emitter };
-
-// Expose explodeJS object to global scope
-if (typeof window !== 'undefined') {
-    window.explodeJS = explodeJS;
-}
+module.exports = { Emitter };
