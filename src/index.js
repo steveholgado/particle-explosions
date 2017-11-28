@@ -1,3 +1,3 @@
-const Emitter = require('./Emitter.js');
+import Emitter from './Emitter'
 
-module.exports = { Emitter };
+export default { Emitter }
