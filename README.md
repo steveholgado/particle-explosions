@@ -39,9 +39,11 @@ emitter.explode(250, options)
 // Draw to canvas in loop
 // ...or call emitter.update() in your existing loop
 const loop = function() {
+  if (emitter.isExploding) {
+    requestAnimationFrame(loop)
+  }
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   emitter.update()
-  requestAnimationFrame(loop)
 }
 
 loop()
