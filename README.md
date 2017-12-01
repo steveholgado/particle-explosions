@@ -2,14 +2,14 @@
 
 Creates particle explosions on a HTML5 canvas element.
 
-### How to use:
+## How to use
 
 Include ***explode.min.js*** in your page:
 ```
 <script src="path/to/explode.min.js"></script>
 ```
 
-Use like this:
+...and use like this:
 
 ```javascript
 const canvas = document.getElementById('canvas-id')
@@ -20,17 +20,17 @@ const emitter = new explodejs.Emitter(ctx)
 
 // Particle options
 const options = {
-  xPos         : 100,       // Start x position of particles
-  yPos         : 100,       // Start y position of particles
-  minSize      : 5,         // Minimum size of particles
-  maxSize      : 30,        // Maximum size of particles
-  color        : '#000000', // Color of particles
-  resistance   : 0.85,      // Rate at which particles slow down
-  gravity      : 0.98,      // Rate at which particles fall
-  decay        : 0.9,       // Rate at which particles shrink
-  sizeToRemove : 0.1,       // Size at which particles disappear
-  minSpeed     : 50,        // Minimum speed of particles
-  maxSpeed     : 100        // Maximum speed of particles
+  xPos         : 100,
+  yPos         : 100,
+  minSize      : 5,
+  maxSize      : 30,
+  minSpeed     : 50,
+  maxSpeed     : 100,
+  resistance   : 0.85,
+  gravity      : 0.98,
+  decay        : 0.9,
+  sizeToRemove : 0.1,
+  color        : '#000000'
 }
 
 // Explode with 250 particles
@@ -48,3 +48,21 @@ const loop = function() {
 
 loop()
 ```
+
+## Particle options
+
+All particle options are optional as they have default values:
+
+| Option       | Description                       | Default          |
+| :----------- | :----------------------------     | :--------------- |
+| xPos         | Start x position of particles     | Center of canvas |
+| yPos         | Start y position of particles     | Center of canvas |
+| minSize      | Minimum size of particles         | 25               |
+| maxSize      | Maximum size of particles         | 25               |
+| minSpeed     | Minimum speed of particles        | 50               |
+| maxSpeed     | Maximum speed of particles        | 100              |
+| resistance   | Rate at which particles slow down | 0.85             |
+| gravity      | Rate at which particles fall      | 0                |
+| decay        | Rate at which particles shrink    | 0.9              |
+| sizeToRemove | Size at which particles disappear | 0.1              |
+| color        | Color of particles                | '#000000'        |
