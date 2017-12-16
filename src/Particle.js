@@ -1,19 +1,13 @@
 class Particle {
 
-  constructor (ctx, options) {
-    // Store reference to canvas context
-    this.ctx = ctx
-
-    // initialize particle
-    this.init(options)
+  constructor (options = {}) {
+    this.init(options) // Initialize particle
   }
 
-  init (options) {
-    options = options || {}
-
-    // Set properties based on passed in options or default values
-    this.xPos         = options.xPos         || this.ctx.canvas.width / 2 
-    this.yPos         = options.yPos         || this.ctx.canvas.height / 2
+  init (options = {}) {
+    // Set properties, or defaults if not passed in
+    this.xPos         = options.xPos         || 0
+    this.yPos         = options.yPos         || 0
     this.minSize      = options.minSize      || 25
     this.maxSize      = options.maxSize      || 25
     this.minSpeed     = options.minSpeed     || 50
@@ -42,17 +36,6 @@ class Particle {
     this.enabled = true 
   }
 
-  draw () {
-    this.ctx.fillStyle = this.color
-
-    const halfSize = this.size / 2
-
-    // Draw particle on canvas
-    this.ctx.beginPath()
-    this.ctx.arc(this.xPos, this.yPos, halfSize, 0, 2 * Math.PI)
-    this.ctx.fill()
-  }
-
   update () {
     // Apply resistance
     this.xVel *= this.resistance
@@ -67,12 +50,11 @@ class Particle {
     
     // Apply decay to shrink particle
     this.size *= this.decay
-
-    // Draw particle on canvas
-    this.draw()
       
     // Disable particle once decayed to specified size
-    if (this.size <= this.sizeToRemove) this.enabled = false
+    if (this.size <= this.sizeToRemove) {
+        this.enabled = false
+    }
   }
 
 }

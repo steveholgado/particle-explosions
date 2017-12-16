@@ -15,12 +15,12 @@ class Emitter {
     // Re-use disabled particle if possible
     if (this.disabledParticles.length > 0) {
       particle = this.disabledParticles.shift()
-      particle.init(options) // Reset particle
+      particle.init(options) // Re-initialize particle
     }
 
     // Otherwise create new particle
     else {
-      particle = new Particle(this.ctx, options)
+      particle = new Particle(options)
       this.particles.push(particle)
     }
   }
@@ -31,31 +31,56 @@ class Emitter {
     this.disabledParticles.push(particle)
   }
 
-  explode (numOfParticles, options) {
-    if (!this.ctx) return // Return early if no canvas context passed in
+  explode (numOfParticles, options = {}) {
+    // Return early if no canvas context passed in
+    if (!this.ctx) return
 
+    // Set default position to canvas center
+    options.xPos = options.xPos || this.ctx.canvas.width / 2
+    options.yPos = options.yPos || this.ctx.canvas.height / 2
+
+    // Flag that emitter has started exploding
     this.isExploding = true
 
+    // Create particles
     for (let i = 0; i < numOfParticles; i++) {
       this.createParticle(options)
     }
   }
 
   update () {
-    // Check if all particles disabled
-    if (this.particles.every(particle => !particle.enabled)) {
+    const allParticlesDisabled = this.particles.every(particle => !particle.enabled)
+
+    // If all particles disabled, flag that emitter is no longer exploding
+    if (allParticlesDisabled) {
       this.isExploding = false
       return
     }
 
     // Update each particle
     this.particles.forEach(particle => {
-      if (!particle.enabled) return // Skip if particle disabled
-
       particle.update()
 
       // Remove particle if disabled after update
-      if (!particle.enabled) this.removeParticle(particle)
+      if (!particle.enabled) {
+        this.removeParticle(particle)
+      }
+    })
+
+    // Draw particles to canvas
+    this.draw()
+  }
+
+  draw () {
+    this.particles.forEach(particle => {
+      this.ctx.fillStyle = particle.color
+
+      const halfSize = particle.size / 2
+
+      // Draw particle on canvas
+      this.ctx.beginPath()
+      this.ctx.arc(particle.xPos, particle.yPos, halfSize, 0, 2 * Math.PI)
+      this.ctx.fill()
     })
   }
     
