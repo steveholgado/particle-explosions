@@ -26,9 +26,9 @@ class Emitter {
     }
   }
 
-  removeParticle (i) {
+  removeParticle (index) {
     // Store reference for possible re-use
-    let particle = this.particles.splice(i, 1)[0]
+    let particle = this.particles.splice(index, 1)[0]
     this.disabledParticles.push(particle)
   }
 
@@ -59,12 +59,12 @@ class Emitter {
     }
 
     // Update each particle
-    this.particles.forEach((particle, i) => {
+    this.particles.forEach((particle, index) => {
       particle.update()
 
       // Remove particle if disabled after update
       if (!particle.enabled) {
-        this.removeParticle(i)
+        this.removeParticle(index)
       }
     })
 
