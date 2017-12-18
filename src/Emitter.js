@@ -1,4 +1,4 @@
-import Particle from './Particle'
+const Particle = require('./Particle')
 
 class Emitter {
 
@@ -15,6 +15,7 @@ class Emitter {
     // Re-use disabled particle if possible
     if (this.disabledParticles.length > 0) {
       particle = this.disabledParticles.shift()
+      this.particles.push(particle)
       particle.init(options) // Re-initialize particle
     }
 
@@ -25,9 +26,9 @@ class Emitter {
     }
   }
 
-  removeParticle (particle) {
-    // Disable particle and store reference for possible re-use
-    particle.enabled = false
+  removeParticle (i) {
+    // Store reference for possible re-use
+    let particle = this.particles.splice(i, 1)[0]
     this.disabledParticles.push(particle)
   }
 
@@ -58,12 +59,12 @@ class Emitter {
     }
 
     // Update each particle
-    this.particles.forEach(particle => {
+    this.particles.forEach((particle, i) => {
       particle.update()
 
       // Remove particle if disabled after update
       if (!particle.enabled) {
-        this.removeParticle(particle)
+        this.removeParticle(i)
       }
     })
 
@@ -86,4 +87,4 @@ class Emitter {
     
 }
 
-export default Emitter
+module.exports = Emitter

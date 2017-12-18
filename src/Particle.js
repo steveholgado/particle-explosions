@@ -53,10 +53,10 @@ class Particle {
       
     // Disable particle once decayed to specified size
     if (this.size <= this.sizeToRemove) {
-        this.enabled = false
+      this.enabled = false
     }
   }
 
 }
 
-export default Particle
+module.exports = Particle

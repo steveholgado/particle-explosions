@@ -1,3 +1,3 @@
-import Emitter from './Emitter'
+const Emitter = require('./Emitter')
 
-export default { Emitter }
+module.exports = { Emitter }
