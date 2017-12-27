@@ -5,7 +5,7 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, 'dist'),
 		filename: 'explode.min.js',
-		library: 'explodejs',
+		library: 'ExplodeJS',
 		libraryTarget: 'umd',
 		umdNamedDefine: true
 	},

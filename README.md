@@ -16,7 +16,7 @@ const canvas = document.getElementById('canvas-id')
 const ctx = canvas.getContext('2d')
 
 // Create new particle emitter
-const emitter = new explodejs.Emitter(ctx)
+const emitter = new ExplodeJS.Emitter(ctx)
 
 // Particle options
 const options = {
