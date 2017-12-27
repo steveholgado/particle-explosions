@@ -2,25 +2,25 @@ const { test } = require('tap')
 const Emitter = require('../src/Emitter')
 
 const mockCanvasCtx = {
-	canvas: {
-		width: 500,
-		height: 250
-	},
-	beginPath() {},
-	arc() {},
-	fill() {}
+  canvas: {
+    width: 500,
+    height: 250
+  },
+  beginPath() {},
+  arc() {},
+  fill() {}
 }
 
 test('New Emitter object', t => {
   const emitter = new Emitter(mockCanvasCtx)
 
-	t.deepEqual(emitter.particles, [], 'should initialise with zero particles')
-	t.deepEqual(emitter.disabledParticles, [], 'should initialise with zero disabled particles')
-	t.end()
+  t.deepEqual(emitter.particles, [], 'should initialise with zero particles')
+  t.deepEqual(emitter.disabledParticles, [], 'should initialise with zero disabled particles')
+  t.end()
 })
 
 test('Calling "explode" method', t => {
-	const emitter = new Emitter(mockCanvasCtx)
+  const emitter = new Emitter(mockCanvasCtx)
   emitter.explode(100)
 
   t.equal(emitter.particles.length, 100, 'should create correct number of particles')
@@ -33,10 +33,10 @@ test('Calling "explode" method', t => {
 })
 
 test('Calling "update" method', t => {
-	const emitter = new Emitter(mockCanvasCtx)
+  const emitter = new Emitter(mockCanvasCtx)
   emitter.explode(100)
   while (emitter.isExploding) {
-  	emitter.update()
+    emitter.update()
   }
 
   t.equal(emitter.particles.length, 0, 'should have empty "particles" array when explosion completes')
@@ -46,5 +46,5 @@ test('Calling "update" method', t => {
 
   const particleState = emitter.particles.length == 50 && emitter.disabledParticles.length == 50
   t.equal(particleState, true, 'should re-use disabled particles if available')
-	t.end()
+  t.end()
 })

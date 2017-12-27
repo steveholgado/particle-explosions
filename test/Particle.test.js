@@ -31,7 +31,7 @@ test('New Particle object', t => {
     color        : particle.color
   }
 
-	t.deepEqual(particle.enabled, true, 'should be enabled')
+  t.deepEqual(particle.enabled, true, 'should be enabled')
   t.deepEqual(particleState, options, 'should initialise with state equal to options')
 
   const particleNoOptions = new Particle()
@@ -57,5 +57,5 @@ test('New Particle object', t => {
   }
 
   t.deepEqual(outcome, true, 'should initialise with default state if no options passed')
-	t.end()
+  t.end()
 })
