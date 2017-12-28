@@ -2,16 +2,17 @@
 
 Create particle explosions on a HTML5 canvas element.
 
-## How to use
+## Installation
 
-Include ***canvas-explosions.min.js*** in your page:
 ```
-<script src="path/to/canvas-explosions.min.js"></script>
+npm install --save canvas-explosions
 ```
 
-...and use like this:
+## Usage
 
 ```javascript
+import canvasExplosions from 'canvas-explosions'
+
 const canvas = document.getElementById('canvas-id')
 const ctx = canvas.getContext('2d')
 
