@@ -1,12 +1,12 @@
-# explode.js
+# Canvas Explosions
 
-Creates particle explosions on a HTML5 canvas element.
+Create particle explosions on a HTML5 canvas element.
 
 ## How to use
 
-Include ***explode.min.js*** in your page:
+Include ***canvas-explosions.min.js*** in your page:
 ```
-<script src="path/to/explode.min.js"></script>
+<script src="path/to/canvas-explosions.min.js"></script>
 ```
 
 ...and use like this:
@@ -16,7 +16,7 @@ const canvas = document.getElementById('canvas-id')
 const ctx = canvas.getContext('2d')
 
 // Create new particle emitter
-const emitter = new ExplodeJS.Emitter(ctx)
+const emitter = new canvasExplosions.Emitter(ctx)
 
 // Particle options
 const options = {

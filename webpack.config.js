@@ -4,8 +4,8 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: 'explode.min.js',
-		library: 'ExplodeJS',
+		filename: 'canvas-explosions.min.js',
+		library: 'canvasExplosions',
 		libraryTarget: 'umd',
 		umdNamedDefine: true
 	},
@@ -15,8 +15,7 @@ module.exports = {
 				test: /\.js$/,
 				loader: 'babel-loader',
 				query: {
-					presets: ['es2015'],
-					plugins: ['add-module-exports']
+					presets: ['es2015']
 				}
 			}
 		]

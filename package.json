@@ -1,15 +1,19 @@
 {
-  "name": "explode.js",
+  "name": "canvas-explosions",
   "version": "1.0.0",
-  "description": "Creates particle explosions on a HTML5 canvas element.",
-  "main": "dist/explode.min.js",
+  "description": "Create particle explosions on a HTML5 canvas element.",
+  "main": "dist/canvas-explosions.min.js",
   "author": "Steve Holgado",
   "license": "ISC",
-  "homepage": "https://github.com/steveholgado/explode.js",
+  "homepage": "https://github.com/steveholgado/canvas-explosions",
   "repository": {
     "type": "git",
-    "url": "https://github.com/steveholgado/explode.js"
+    "url": "https://github.com/steveholgado/canvas-explosions"
   },
+  "keywords": [
+    "canvas",
+    "explosions"
+  ],
   "scripts": {
     "dist": "webpack -p",
     "test": "tap --reporter spec --coverage test/*.js"
@@ -17,7 +21,6 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.24.1",
     "tap": "^11.0.0",
     "webpack": "^3.8.1"
