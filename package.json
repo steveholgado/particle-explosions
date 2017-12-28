@@ -14,9 +14,13 @@
     "canvas",
     "explosions"
   ],
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "dist": "webpack -p",
-    "test": "tap --reporter spec --coverage test/*.js"
+    "test": "tap --reporter spec --coverage test/*.js",
+    "prepublish": "npm test && npm run dist"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
