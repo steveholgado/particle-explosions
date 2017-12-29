@@ -1,23 +1,23 @@
-# Canvas Explosions
+# Particle Explosions
 
 Create particle explosions on a HTML5 canvas element.
 
 ## Installation
 
 ```
-npm install --save canvas-explosions
+npm install --save particle-explosions
 ```
 
 ## Usage
 
 ```javascript
-import canvasExplosions from 'canvas-explosions'
+import particleExplosions from 'particle-explosions'
 
 const canvas = document.getElementById('canvas-id')
 const ctx = canvas.getContext('2d')
 
 // Create new particle emitter
-const emitter = new canvasExplosions.Emitter(ctx)
+const emitter = new particleExplosions.Emitter(ctx)
 
 // Particle options
 const options = {

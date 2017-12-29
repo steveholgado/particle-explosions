@@ -1,17 +1,18 @@
 {
-  "name": "canvas-explosions",
+  "name": "particle-explosions",
   "version": "1.0.0",
   "description": "Create particle explosions on a HTML5 canvas element.",
-  "main": "dist/canvas-explosions.min.js",
+  "main": "dist/particle-explosions.min.js",
   "author": "Steve Holgado",
   "license": "MIT",
-  "homepage": "https://github.com/steveholgado/canvas-explosions",
+  "homepage": "https://github.com/steveholgado/particle-explosions",
   "repository": {
     "type": "git",
-    "url": "https://github.com/steveholgado/canvas-explosions"
+    "url": "https://github.com/steveholgado/particle-explosions"
   },
   "keywords": [
     "canvas",
+    "particle",
     "explosions"
   ],
   "files": [

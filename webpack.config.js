@@ -4,8 +4,8 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: 'canvas-explosions.min.js',
-		library: 'canvasExplosions',
+		filename: 'particle-explosions.min.js',
+		library: 'particleExplosions',
 		libraryTarget: 'umd',
 		umdNamedDefine: true
 	},
