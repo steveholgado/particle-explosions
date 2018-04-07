@@ -2,6 +2,8 @@
 
 Create particle explosions on a HTML5 canvas element.
 
+![Demo](demo.gif)
+
 ## Installation
 
 ```
