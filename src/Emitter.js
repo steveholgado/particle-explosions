@@ -1,90 +1,70 @@
-const Particle = require('./Particle')
-
 class Emitter {
 
-  constructor (ctx) {
-    this.ctx = ctx
-    this.particles = []
-    this.disabledParticles = [] // Store references to disabled particles
-    this.isExploding = false
-  }
-    
-  createParticle (options) {
-    let particle
-    
-    // Re-use disabled particle if possible
-    if (this.disabledParticles.length > 0) {
-      particle = this.disabledParticles.shift()
-      this.particles.push(particle)
-      particle.init(options) // Re-initialize particle
-    }
+  constructor (particlePool, ctx, options = {}) {
+    if (!particlePool) throw 'No particle pool'
+    if (!ctx) throw 'No canvas ctx'
 
-    // Otherwise create new particle
-    else {
-      particle = new Particle(options)
-      this.particles.push(particle)
-    }
+    this._ctx = ctx
+    this._particlePool = particlePool
+    this._particles = []
+    this._isLooping = false
+    this._pause = options.pause
   }
 
-  removeParticle (index) {
-    // Store reference for possible re-use
-    let particle = this.particles.splice(index, 1)[0]
-    this.disabledParticles.push(particle)
+  get isExploding () {
+    return this._particles.length ? true : false
   }
 
-  explode (numOfParticles, options = {}) {
-    // Return early if no canvas context passed in
-    if (!this.ctx) return
+  explode (numOfParticles, props = {}) {
+    if (!numOfParticles) return
 
-    // Set default position to canvas center
-    options.xPos = options.xPos || this.ctx.canvas.width / 2
-    options.yPos = options.yPos || this.ctx.canvas.height / 2
-
-    // Flag that emitter has started exploding
-    this.isExploding = true
-
-    // Create particles
     for (let i = 0; i < numOfParticles; i++) {
-      this.createParticle(options)
+      this._createParticle(props)
     }
-  }
-
-  update () {
-    const allParticlesDisabled = this.particles.every(particle => !particle.enabled)
-
-    // If all particles disabled, flag that emitter is no longer exploding
-    if (allParticlesDisabled) {
-      this.isExploding = false
-      return
+  
+    if (!this._pause && !this._isLooping) {
+      this._isLooping = true
+      this._drawLoop()
     }
-
-    // Update each particle
-    this.particles.forEach((particle, index) => {
-      particle.update()
-
-      // Remove particle if disabled after update
-      if (!particle.enabled) {
-        this.removeParticle(index)
-      }
-    })
-
-    // Draw particles to canvas
-    this.draw()
   }
 
   draw () {
-    this.particles.forEach(particle => {
-      this.ctx.fillStyle = particle.color
+    if (!this.isExploding) return
 
-      const halfSize = particle.size / 2
+    this._ctx.clearRect(0, 0, this._ctx.canvas.width, this._ctx.canvas.height)
 
-      // Draw particle on canvas
-      this.ctx.beginPath()
-      this.ctx.arc(particle.xPos, particle.yPos, halfSize, 0, 2 * Math.PI)
-      this.ctx.fill()
+    this._particles.forEach((particle, index) => {
+      particle.update()
+      particle.draw(this._ctx)
+
+      // Remove particle if no longer active after update
+      if (!particle.isActive) {
+        this._removeParticle(index)
+      }
     })
   }
-    
+
+  _drawLoop () {
+    if (this.isExploding) {
+      requestAnimationFrame(this._drawLoop.bind(this))
+    } else {
+      this._isLooping = false
+    }
+
+    this.draw()
+  }
+
+  _createParticle (props = {}) {
+    const particle = this._particlePool.get()
+    particle.init(props)
+    this._particles.push(particle)
+  }
+
+  _removeParticle (index) {
+    const particle = this._particles.splice(index, 1)[0]
+    this._particlePool.recycle(particle)
+  }
+
 }
 
 module.exports = Emitter

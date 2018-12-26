@@ -10,12 +10,12 @@ module.exports = {
 		umdNamedDefine: true
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
-				query: {
-					presets: ['es2015']
+				options: {
+					presets: ['@babel/preset-env']
 				}
 			}
 		]

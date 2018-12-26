@@ -1,60 +1,86 @@
 class Particle {
 
-  constructor (options = {}) {
-    this.init(options) // Initialize particle
+  constructor (props = {}) {
+    this.init(props)
   }
 
-  init (options = {}) {
-    // Set properties, or defaults if not passed in
-    this.xPos         = options.xPos         || 0
-    this.yPos         = options.yPos         || 0
-    this.minSize      = options.minSize      || 25
-    this.maxSize      = options.maxSize      || 25
-    this.minSpeed     = options.minSpeed     || 50
-    this.maxSpeed     = options.maxSpeed     || 100
-    this.resistance   = options.resistance   || 0.85 
-    this.gravity      = options.gravity      || 0
-    this.decay        = options.decay        || 0.9
-    this.sizeToRemove = options.sizeToRemove || 0.1
-    this.color        = options.color        || '#000000'
+  get isActive () {
+    return this._size > this._sizeToRemove
+  }
+
+  init (props = {}) {
+    // Set properties (or defaults)
+    this._xPos         = props.xPos         || null
+    this._yPos         = props.yPos         || null
+    this._minSize      = props.minSize      || 5
+    this._maxSize      = props.maxSize      || 30
+    this._minSpeed     = props.minSpeed     || 50
+    this._maxSpeed     = props.maxSpeed     || 100
+    this._resistance   = props.resistance   || 0.85 
+    this._gravity      = props.gravity      || 0.98
+    this._decay        = props.decay        || 0.9
+    this._sizeToRemove = props.sizeToRemove || 0.1
+    this._color        = props.color        || '#000000'
+
+    // If color is array, select color at random
+    if (Array.isArray(props.color)) {
+      const randomIndex = Math.floor(Math.random() * props.color.length)
+      this._color = props.color[randomIndex]
+    }
 
     // Generate random particle size betwen minimum and maximum
-    this.size = Math.floor(Math.random() * (this.maxSize - this.minSize + 1) + this.minSize)
+    const sizeRange  = this._maxSize - this._minSize + 1
+    const sizeRandom = Math.random() * sizeRange
+    this._size = Math.floor(sizeRandom + this._minSize)
 
     // Generate random particle speed betwen minimum and maximum
-    this.speed = Math.floor(Math.random() * (this.maxSpeed - this.minSpeed + 1) + this.minSpeed)
+    const speedRange  = this._maxSpeed - this._minSpeed + 1
+    const speedRandom = Math.random() * speedRange
+    this._speed = Math.floor(speedRandom + this._minSpeed)
 
     // Set initial velocity ensuring particles head in all directions
-    this.xVel = Math.random() - 0.5
-    this.yVel = Math.random() - 0.5
+    this._xVel = Math.random() - 0.5
+    this._yVel = Math.random() - 0.5
 
     // Apply particle speed
-    this.xVel *= this.speed
-    this.yVel *= this.speed
-
-    // Enable particle
-    this.enabled = true 
+    this._xVel *= this._speed
+    this._yVel *= this._speed
   }
 
   update () {
     // Apply resistance
-    this.xVel *= this.resistance
-    this.yVel *= this.resistance
+    this._xVel *= this._resistance
+    this._yVel *= this._resistance
     
     // Apply velocity
-    this.xPos += this.xVel
-    this.yPos += this.yVel
+    this._xPos += this._xVel
+    this._yPos += this._yVel
 
     // Apply gravity if specified - defaults to zero
-    this.yPos += this.gravity
+    this._yPos += this._gravity
     
     // Apply decay to shrink particle
-    this.size *= this.decay
-      
-    // Disable particle once decayed to specified size
-    if (this.size <= this.sizeToRemove) {
-      this.enabled = false
-    }
+    this._size *= this._decay
+  }
+
+  draw (ctx) {
+    if (!ctx || !this.isActive) return
+
+    // If position not set, set to center of canvas
+    if (this._xPos === null) this._xPos = ctx.canvas.width / 2
+    if (this._yPos === null) this._yPos = ctx.canvas.height / 2
+
+    // Draw particle on canvas
+    ctx.fillStyle = this._color
+    ctx.beginPath()
+    ctx.arc(
+      this._xPos, 
+      this._yPos,
+      this._size / 2,
+      0,
+      2 * Math.PI
+    )
+    ctx.fill()
   }
 
 }
