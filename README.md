@@ -1,5 +1,8 @@
 # Particle Explosions
 
+[![npm version](https://badge.fury.io/js/particle-explosions.svg)](https://badge.fury.io/js/particle-explosions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Create particle explosions on a HTML5 canvas element.
 
 ## Installation
