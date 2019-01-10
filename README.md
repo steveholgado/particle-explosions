@@ -1,6 +1,7 @@
 # Particle Explosions
 
-[![npm version](https://badge.fury.io/js/particle-explosions.svg)](https://badge.fury.io/js/particle-explosions)
+[![npm version](https://badge.fury.io/js/particle-explosions.svg)](https://www.npmjs.com/package/particle-explosions)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/particle-explosions/dist/particle-explosions.min.js?compression=gzip&color=blue)](https://unpkg.com/particle-explosions/dist/particle-explosions.min.js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Create particle explosions on a HTML5 canvas element.
