@@ -5,7 +5,7 @@ const ObjectPool = require('./ObjectPool')
 const particlePool = new ObjectPool(Particle)
 
 const createEmitter = (ctx, options) => {
-	return new Emitter(particlePool, ctx, options)
+  return new Emitter(particlePool, ctx, options)
 }
 
 module.exports = { createEmitter }
