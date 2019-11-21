@@ -1,8 +1,9 @@
 {
   "name": "particle-explosions",
-  "version": "2.0.0",
-  "description": "Create particle explosions on a HTML5 canvas element.",
+  "version": "3.0.0",
+  "description": "Create particle explosions on a HTML5 canvas element",
   "main": "dist/particle-explosions.min.js",
+  "types": "dist/particle-explosions.d.ts",
   "author": "Steve Holgado",
   "license": "MIT",
   "homepage": "https://github.com/steveholgado/particle-explosions",
@@ -11,24 +12,29 @@
     "url": "https://github.com/steveholgado/particle-explosions"
   },
   "keywords": [
-    "canvas",
     "particle",
-    "explosions"
+    "particles",
+    "explosions",
+    "explode",
+    "canvas",
+    "HTML5 canvas"
   ],
   "files": [
     "dist/"
   ],
   "scripts": {
     "build": "webpack -p",
-    "test": "tap --reporter spec --coverage test/*.js",
+    "test": "jest",
     "prepublish": "npm test && npm run build"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.0",
-    "babel-loader": "^8.0.4",
-    "tap": "^12.1.1",
-    "webpack": "^4.27.1",
-    "webpack-cli": "^3.1.2"
+    "@types/jest": "^24.0.21",
+    "dts-bundle": "^0.7.3",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }
