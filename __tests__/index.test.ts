@@ -1,5 +1,5 @@
 import { createEmitter } from '../src'
-import Emitter from '../src/Emitter'
+import { Emitter }  from '../src/Emitter'
 
 test('does not throw on instantiation', () => {
   const ctx = {} as CanvasRenderingContext2D

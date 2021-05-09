@@ -1,4 +1,4 @@
-import CanvasRenderer from '../src/CanvasRenderer'
+import { CanvasRenderer } from '../src/CanvasRenderer'
 
 function createFakeCanvasCtx() {
   return {

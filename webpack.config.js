@@ -7,7 +7,7 @@ DtsBundlePlugin.prototype.apply = function(compiler) {
   compiler.plugin('done', function() {
     dts.bundle({
       name: 'particle-explosions',
-      main: path.join(__dirname, '/src/**/*.d.ts'),
+      main: path.join(__dirname, '/src/index.d.ts'),
       out: path.join(__dirname, '/dist/particle-explosions.d.ts'),
       removeSource: true,
       outputAsModuleFolder: true 

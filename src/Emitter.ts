@@ -12,7 +12,7 @@ export type EmitterOptions = {
   pause?: boolean
 }
 
-export default class Emitter implements IEmitter {
+export class Emitter implements IEmitter {
 
   private _canvasRenderer: ICanvasRenderer
   private _particleFactory: IParticleFactory

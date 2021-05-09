@@ -5,7 +5,7 @@ export interface ICanvasRenderer {
   canvasHeight: number
 }
 
-export default class CanvasRenderer implements ICanvasRenderer {
+export class CanvasRenderer implements ICanvasRenderer {
 
   private _ctx: CanvasRenderingContext2D
 
