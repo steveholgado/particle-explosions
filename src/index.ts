@@ -1,6 +1,6 @@
-import Emitter, { IEmitter, EmitterOptions } from './Emitter'
-import ParticleFactory from './ParticleFactory'
-import CanvasRenderer from './CanvasRenderer'
+import { Emitter,  IEmitter, EmitterOptions } from './Emitter'
+import { ParticleFactory } from './ParticleFactory'
+import { CanvasRenderer}  from './CanvasRenderer'
 
 export function createEmitter(ctx: CanvasRenderingContext2D, options?: EmitterOptions): IEmitter {
   const canvasRenderer = new CanvasRenderer(ctx)

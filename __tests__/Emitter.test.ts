@@ -1,4 +1,4 @@
-import Emitter from '../src/Emitter'
+import { Emitter } from '../src/Emitter'
 
 Object.defineProperty(window, 'requestAnimationFrame', {
   value: () => {}

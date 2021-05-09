@@ -1,4 +1,4 @@
-import ParticleFactory from '../src/ParticleFactory'
+import { ParticleFactory}  from '../src/ParticleFactory'
 import Particle from '../src/Particle'
 
 test('does not throw on instantiation', () => {
